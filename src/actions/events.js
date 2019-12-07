@@ -40,13 +40,26 @@ export const createEvent = data => dispatch => {
 
 export const LOAD_EVENT = "LOAD_EVENT";
 
-const loadedEvent = event => ({
+const loadEventSuccess = event => ({
   type: LOAD_EVENT,
   event
 });
 
 export const loadEvent = id => dispatch => {
   request(`${baseUrl}/event/${id}`)
-    .then(data => dispatch(loadedEvent(data.body)))
+    .then(data => dispatch(loadEventSuccess(data.body)))
+    .catch(console.error);
+};
+export const EVENT_DELETE_SUCCESS = "EVENT_DELETE_SUCCESS";
+
+const deleteEventSuccess = id => ({
+  type: EVENT_DELETE_SUCCESS,
+  payload: id
+});
+
+export const deleteEvent = id => dispatch => {
+  request
+    .delete(`${baseUrl}/event/${id}`)
+    .then(data => dispatch(deleteEventSuccess(id)))
     .catch(console.error);
 };

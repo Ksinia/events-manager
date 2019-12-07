@@ -1,4 +1,8 @@
-import { EVENTS_FETCHED, EVENT_CREATE_SUCCESS } from "../actions/events";
+import {
+  EVENTS_FETCHED,
+  EVENT_CREATE_SUCCESS,
+  EVENT_DELETE_SUCCESS
+} from "../actions/events";
 const initialState = null;
 
 export default function eventsReducer(state = initialState, action) {
@@ -9,6 +13,15 @@ export default function eventsReducer(state = initialState, action) {
     case EVENT_CREATE_SUCCESS: {
       if (state) {
         return [...state, action.event];
+      }
+    }
+    case EVENT_DELETE_SUCCESS: {
+      if (state) {
+        return state.filter(event => {
+          console.log(event.id);
+          console.log(action.payload);
+          return event.id != action.payload;
+        });
       }
     }
     default: {
