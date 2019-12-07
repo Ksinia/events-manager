@@ -17,7 +17,7 @@ export const loadEvents = () => (dispatch, getState) => {
   request(`${baseUrl}/event`)
     .then(response => {
       // dispatch an EVENTS_FETCHED action that contains the events
-      dispatch(eventsFetched(response.body));
+      dispatch(eventsFetched(response.body.events)); //added .events because now due to pagination our api returns qty of events and events
     })
     .catch(console.error);
 };

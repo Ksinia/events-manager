@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 class EventList extends Component {
   render() {
-    console.log(this.props);
     return this.props.events ? (
       <ul>
         {this.props.events.map(event => (

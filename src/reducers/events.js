@@ -18,8 +18,6 @@ export default function eventsReducer(state = initialState, action) {
     case EVENT_DELETE_SUCCESS: {
       if (state) {
         return state.filter(event => {
-          console.log(event.id);
-          console.log(action.payload);
           return event.id != action.payload;
         });
       }
