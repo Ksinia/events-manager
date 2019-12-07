@@ -50,6 +50,7 @@ export const loadEvent = id => dispatch => {
     .then(data => dispatch(loadEventSuccess(data.body)))
     .catch(console.error);
 };
+
 export const EVENT_DELETE_SUCCESS = "EVENT_DELETE_SUCCESS";
 
 const deleteEventSuccess = id => ({
@@ -61,5 +62,20 @@ export const deleteEvent = id => dispatch => {
   request
     .delete(`${baseUrl}/event/${id}`)
     .then(data => dispatch(deleteEventSuccess(id)))
+    .catch(console.error);
+};
+
+export const UPDATE_EVENT_SUCCESS = "UPDATE_EVENT_SUCCESS";
+
+const updateEventSuccess = updatedEvent => ({
+  type: UPDATE_EVENT_SUCCESS,
+  payload: updatedEvent
+});
+
+export const updateEvent = (id, data) => dispatch => {
+  request
+    .patch(`${baseUrl}/event/${id}`)
+    .send(data)
+    .then(response => dispatch(updateEventSuccess(response.body)))
     .catch(console.error);
 };

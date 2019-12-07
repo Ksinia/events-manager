@@ -26,7 +26,7 @@ function CreateEventForm(props) {
           onChange={props.onChange}
           value={props.values.description}
         ></input>
-        <button type="submit">Add event</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
